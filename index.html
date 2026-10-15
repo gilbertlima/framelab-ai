@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FrameLab — ambiente experimental de edição de vídeos no navegador." />
+  <meta name="theme-color" content="#111115" />
+  <title>FrameLab — Estúdio de Vídeo</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <button class="brand" id="brandBtn" type="button" aria-label="FrameLab, voltar ao início">
+        <span class="brand-logo"><span>✳</span></span><span class="brand-name">frame<span>lab</span></span><span class="brand-dot"></span>
+      </button>
+      <div class="side-label">ESPAÇO DE TRABALHO</div>
+      <nav class="nav" aria-label="Principal">
+        <button class="nav-item selected" type="button" data-view="home"><span class="nav-symbol">▦</span> Visão geral</button>
+        <button class="nav-item" type="button" data-view="projects"><span class="nav-symbol">▣</span> Meus projetos <span class="counter" id="projectCount">0</span></button>
+        <button class="nav-item" type="button" data-view="studio"><span class="nav-symbol">◈</span> Estúdio de edição</button>
+      </nav>
+      <div class="side-label side-label-second">FERRAMENTAS</div>
+      <nav class="nav" aria-label="Ferramentas">
+        <button class="nav-item" type="button" data-tool="subtitles"><span class="nav-symbol">▤</span> Legendas</button>
+        <button class="nav-item" type="button" data-tool="styles"><span class="nav-symbol">✧</span> Estilos de texto</button>
+        <button class="nav-item" type="button" data-tool="formats"><span class="nav-symbol">▧</span> Formatos</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-info"><span class="side-info-icon">✦</span><div><b>Ambiente de estudos</b><small>Sem servidor, sem assinatura e sem cobrança.</small></div></div>
+        <div class="profile"><span class="avatar">FL</span><div><strong>Meu workspace</strong><small>Projeto local</small></div><span class="profile-more">···</span></div>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="crumb"><span class="crumb-muted">Workspace</span><span class="chevron">/</span><span id="pageName">Visão geral</span></div>
+        <div class="top-actions"><span class="demo-badge"><span class="live-dot"></span> DEMO LOCAL</span><button class="top-help" id="aboutBtn" type="button">Sobre este projeto <span>↗</span></button></div>
+      </header>
+      <main class="main-content">
+        <section class="view active" id="homeView" aria-label="Visão geral">
+          <div class="hero-heading"><div><div class="eyebrow">SEU ESTÚDIO CRIATIVO <span>✳</span></div><h1>Seus vídeos merecem<br /><em>outra dimensão.</em></h1><p>Do arquivo original ao vídeo final. Edite, personalize legendas e exporte — tudo direto no navegador.</p></div><button class="btn-primary hero-cta" type="button" id="newProjectBtn">✧ <span>Criar novo projeto</span> <span class="arrow">↗</span></button></div>
+          <div class="feature-grid">
+            <button class="feature feature-main" type="button" id="editCard"><div class="card-overline"><span class="card-icon">◈</span><span>FLUXO PRINCIPAL</span></div><div class="feature-decor"><div class="decor-film"><span class="decor-video"></span><span class="decor-text">Seu próximo vídeo começa aqui.</span><div class="decor-track"></div></div><div class="decor-sparkle">✳</div></div><div class="feature-footer"><div><h2>Editor de vídeo</h2><p>Importe seu vídeo, adicione legendas e personalize a apresentação.</p></div><span class="round-arrow">↗</span></div></button>
+            <button class="feature feature-alt" type="button" id="captionCard"><div class="card-overline"><span class="card-icon">✳</span><span>PERSONALIZAÇÃO</span></div><div class="style-demo"><div class="style-tile tile1"><span>VOCÊ TEM<br />UMA HISTÓRIA</span></div><div class="style-tile tile2"><span>CONTE ELA.</span></div><div class="style-tile tile3"><span>DO SEU JEITO.</span></div></div><div class="feature-footer"><div><h2>Legendas e estilos</h2><p>Transforme seu conteúdo com textos e formatos adaptáveis.</p></div><span class="round-arrow">↗</span></div></button>
+          </div>
+          <section class="upload-panel" id="dropHome" aria-label="Carregar vídeo">
+            <div class="upload-mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V3m0 0L7 8m5-5 5 5M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg></div>
+            <div><h3>Importe um vídeo para começar</h3><p>Arraste e solte aqui ou selecione um arquivo do seu computador.</p><div class="upload-formats">MP4 · MOV · WEBM <span>•</span> Arquivos processados localmente</div></div>
+            <button class="btn-outline" type="button" id="uploadHomeBtn">Escolher arquivo <span>↗</span></button>
+          </section>
+          <div class="bottom-grid"><section class="content-card"><div class="section-heading"><div><h3>Seus projetos recentes</h3><p>Retome sua edição de onde parou nesta sessão.</p></div><button class="small-link" type="button" data-go="projects">Ver todos →</button></div><div class="empty-project" id="recentProjects"><span class="empty-icon">▣</span><span>Nenhum projeto nesta sessão. Vamos criar o primeiro?</span></div></section><section class="content-card tip-card"><div class="tip-kicker">✦ DICA RÁPIDA</div><h3>Comece pelo essencial.</h3><p>Um bom vídeo não precisa de mil efeitos. Comece com cortes claros, legendas legíveis e um formato correto.</p><button class="small-link" type="button" id="tipBtn">Começar a editar →</button></section></div>
+        </section>
+        <section class="view" id="projectsView" aria-label="Projetos"><div class="view-head"><div><div class="eyebrow">ORGANIZAÇÃO</div><h1>Meus projetos<span class="period">.</span></h1><p>Arquivos ficam apenas na sessão atual. Nenhum vídeo é enviado a servidores.</p></div><button class="btn-primary" id="projectsNewBtn" type="button">+ Novo projeto</button></div><div class="projects-list" id="projectsList"><div class="projects-empty"><span>▣</span><h2>Nenhum projeto criado</h2><p>Selecione um vídeo para abrir o editor.</p><button class="btn-primary" type="button" id="projectsUploadBtn">Importar vídeo</button></div></div></section>
+        <section class="view" id="studioView" aria-label="Editor"><div class="studio-header"><div><div class="eyebrow">ESTÚDIO / EDIÇÃO</div><h1 id="studioTitle">Seu estúdio de edição<span class="period">.</span></h1><p id="studioDescription">Importe um vídeo para desbloquear as ferramentas.</p></div><div class="studio-actions"><button type="button" class="btn-outline" id="replaceVideoBtn">↺ Trocar vídeo</button><button type="button" class="btn-primary" id="exportBtn" disabled>↓ Exportar vídeo</button></div></div>
+          <div class="editor-grid"><section class="player-area"><div class="player-top"><span class="section-label">PRÉ-VISUALIZAÇÃO</span><span class="tag">PRÉVIA AO VIVO</span></div><div class="stage" id="stage"><div class="video-stage" id="videoStage"><video id="video" playsinline preload="metadata"></video><div class="caption-overlay" id="captionOverlay" aria-live="off"></div><div class="stage-placeholder" id="stagePlaceholder"><div class="placeholder-icon">▶</div><h2>Sua história começa aqui</h2><p>Escolha um arquivo para visualizar e editar.</p><button class="btn-primary" type="button" id="studioUploadBtn">Selecionar vídeo</button></div></div></div><div class="transport"><button type="button" class="play-button" id="playBtn" aria-label="Reproduzir vídeo" disabled>▶</button><span class="timecode" id="timeNow">00:00</span><input type="range" id="timeline" class="timeline" aria-label="Linha do tempo" min="0" max="100" value="0" disabled/><span class="timecode" id="timeTotal">00:00</span><button type="button" id="muteBtn" class="icon-button" aria-label="Ativar ou desativar áudio" disabled>◖))</button></div><div class="timeline-label">LINHA DO TEMPO <span id="fileMeta">Nenhum arquivo selecionado</span></div><div class="timeline-visual" id="timelineVisual"><span class="timeline-empty">Importe um arquivo para visualizar a linha do tempo.</span></div><div class="panel-footnote">As alterações são aplicadas à prévia e à exportação. Exportação em WebM, realizada no próprio navegador.</div></section>
+          <aside class="settings-panel"><div class="settings-top"><div><span class="section-label">PERSONALIZAR</span><h2>Ajustes do vídeo</h2></div><span class="setting-icon">⚙</span></div><div class="tab-row"><button class="tab selected" id="textTab" type="button" data-tab="text">Legendas</button><button class="tab" id="styleTab" type="button" data-tab="style">Estilos</button><button class="tab" id="formatTab" type="button" data-tab="format">Formato</button></div>
+          <div class="tab-panel active" id="textPanel"><label for="captionInput" class="field-label">TEXTO NA TELA</label><textarea id="captionInput" rows="3" placeholder="Digite uma legenda para aparecer no vídeo…">Seu vídeo. Seu estilo.</textarea><div class="field-hint">Sem SRT, esse texto permanece visível durante o vídeo inteiro.</div><div class="setting-divider"></div><label for="srtInput" class="field-label">IMPORTAR LEGENDAS COM TEMPO (SRT)</label><button class="upload-srt" type="button" id="srtButton"><span>▤</span><div><b>Importar arquivo .srt</b><small>Legendas sincronizadas por tempo</small></div><span class="srt-plus">+</span></button><div class="srt-state" id="srtState"></div><button class="text-clear" id="clearSrtBtn" type="button" hidden>Remover arquivo SRT</button><div class="setting-divider"></div><div class="insight"><span>ⓘ</span><p>A transcrição automática por IA não está ativada nesta versão. Digite o texto ou importe um SRT existente.</p></div></div>
+          <div class="tab-panel" id="stylePanel"><span class="field-label">ESTILO DAS LEGENDAS</span><div class="style-options"><button class="style-choice selected" type="button" data-style="classic"><span class="sample classic">TEXTO</span><small>Clássico</small></button><button class="style-choice" type="button" data-style="bold"><span class="sample bold-style">TEXTO</span><small>Impacto</small></button><button class="style-choice" type="button" data-style="boxed"><span class="sample boxed-style">TEXTO</span><small>Box</small></button><button class="style-choice" type="button" data-style="minimal"><span class="sample minimal-style">Texto</span><small>Minimal</small></button></div><div class="setting-divider"></div><label for="fontSize" class="field-label">TAMANHO <span id="fontSizeValue">38 px</span></label><input type="range" id="fontSize" min="18" max="72" value="38"/><div class="setting-divider"></div><label for="fontColor" class="field-label">COR DO TEXTO</label><div class="color-row"><input type="color" id="fontColor" value="#ffffff"/><span id="colorValue">#FFFFFF</span></div><div class="setting-divider"></div><span class="field-label">POSIÇÃO</span><div class="position-row"><button type="button" class="position-btn" data-position="top">Superior</button><button type="button" class="position-btn" data-position="center">Centro</button><button type="button" class="position-btn selected" data-position="bottom">Inferior</button></div></div>
+          <div class="tab-panel" id="formatPanel"><span class="field-label">PROPORÇÃO DO VÍDEO</span><div class="ratio-options"><button type="button" class="ratio-choice selected" data-ratio="9:16"><span class="ratio-icon portrait"></span><b>9:16</b><small>Reels e Stories</small></button><button type="button" class="ratio-choice" data-ratio="16:9"><span class="ratio-icon wide"></span><b>16:9</b><small>YouTube</small></button><button type="button" class="ratio-choice" data-ratio="1:1"><span class="ratio-icon square"></span><b>1:1</b><small>Feed quadrado</small></button></div><div class="setting-divider"></div><div class="insight"><span>ⓘ</span><p>O vídeo é ajustado dentro do quadro sem distorcer sua proporção. As áreas extras ficam pretas.</p></div></div>
+          </aside></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <input type="file" id="videoInput" accept="video/mp4,video/webm,video/quicktime,video/*" hidden />
+  <input type="file" id="srtInput" accept=".srt,text/plain" hidden />
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-closebar"><span class="modal-icon">✳</span><button type="button" class="modal-close" id="modalClose" aria-label="Fechar">×</button></div><h2 id="modalTitle">Sobre o FrameLab</h2><p>Este é um protótipo educacional independente, inspirado em produtos de edição de vídeo. Não é afiliado à Captions e não utiliza serviços proprietários de terceiros.</p><ul><li>Importação e pré-visualização local de vídeos.</li><li>Legendas personalizáveis e arquivo SRT.</li><li>Exportação WebM pelo navegador compatível.</li><li>Sem conta, upload remoto ou IA gerativa nesta etapa.</li></ul><button type="button" class="btn-primary modal-action" id="modalOk">Entendi</button></div></div>
+  <div class="export-overlay" id="exportOverlay" hidden><div class="export-modal"><div class="export-spinner"></div><h2>Preparando o vídeo…</h2><p>O navegador está gravando o vídeo com as legendas. Não feche esta aba até finalizar.</p><div class="export-progress"><div id="exportProgress"></div></div><span id="exportPercent">0%</span></div></div>
+  <script src="./app.js"></script>
+</body>
+</html>
